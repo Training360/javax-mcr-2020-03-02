@@ -18,6 +18,6 @@ public class HelloController {
     @RequestMapping("/hello")
     @ResponseBody
     public String sayHello() {
-        return helloService.sayHello();
+        return helloService.sayHello().toUpperCase();
     }
 }
