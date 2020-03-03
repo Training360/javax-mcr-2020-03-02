@@ -5,12 +5,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 @Service
 public class EmployeesService {
 
-    private AtomicInteger id = new AtomicInteger();
+    private AtomicLong id = new AtomicLong();
 
     private ModelMapper modelMapper;
 
