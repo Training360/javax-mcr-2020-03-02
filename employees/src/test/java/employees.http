@@ -1,8 +1,14 @@
+## Alkalmazottak listázása
+
 GET http://localhost:8080/api/employees
 
-###
+### Egy alkalmazott lekérdezése
 
 GET http://localhost:8080/api/employees/1
+
+### Nem létező alkalmazott lekérdezése
+
+GET http://localhost:8080/api/employees/100
 
 ### Új alkalmazott létrehozása
 
@@ -17,5 +23,9 @@ POST http://localhost:8080/api/employees/1
 Content-Type: application/json
 
 {"name": "John Doe2"}
+
+### Törlés
+
+DELETE http://localhost:8080/api/employees/3
 
 ###

@@ -1,5 +1,7 @@
 package training.employees;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
@@ -21,11 +23,23 @@ public class EmployeesController {
     }
 
     @GetMapping("/{id}")
-    public EmployeeDto findEmployeeById(@PathVariable long id) {
-        return employeesService.findEmployeeById(id);
+    public ResponseEntity findEmployeeById(@PathVariable long id) {
+//        try {
+            return ResponseEntity.ok(employeesService.findEmployeeById(id));
+//        }
+//        catch (IllegalArgumentException iae) {
+//            return ResponseEntity.notFound().build();
+//        }
+    }
+
+    @ExceptionHandler({IllegalArgumentException.class})
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public void handleNotFound() {
+        System.out.println("Employee not found");
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public EmployeeDto createEmployee(@RequestBody CreateEmployeeCommand command) {
         return employeesService.createEmployee(command);
     }
@@ -33,6 +47,12 @@ public class EmployeesController {
     public EmployeeDto updateEmployee(@PathVariable("id") long id,
                                       @RequestBody UpdateEmployeeCommand command) {
         return employeesService.updateEmployee(id, command);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteEmployee(@PathVariable("id") long id) {
+        employeesService.deleteEmployee(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
