@@ -1,0 +1,21 @@
+GET http://localhost:8080/api/employees
+
+###
+
+GET http://localhost:8080/api/employees/1
+
+### Új alkalmazott létrehozása
+
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{"name": "John Smith"}
+
+### Alkalmazott módosítása
+
+POST http://localhost:8080/api/employees/1
+Content-Type: application/json
+
+{"name": "John Doe2"}
+
+###
