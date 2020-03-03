@@ -32,4 +32,10 @@ public class EmployeesRepository {
         employee.setId(keyHolder.getKey().longValue());
         return employee;
     }
+
+    public Employee updateEmployee(Employee employee) {
+        jdbcTemplate.update("update employees set emp_name = ? where id = ?",
+                employee.getName(), employee.getId());
+        return employee;
+    }
 }
