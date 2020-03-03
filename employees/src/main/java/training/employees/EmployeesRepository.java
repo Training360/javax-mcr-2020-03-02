@@ -1,5 +1,6 @@
 package training.employees;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -53,6 +54,17 @@ public class EmployeesRepository {
     public List<Employee> listAllEmployees(String prefix) {
         return jdbcTemplate.query("select id, emp_name from employees where emp_name like ?",
                 this::convertEmployee, prefix == null ? "%" : prefix + "%");
+    }
+
+    public Employee findEmployeeById(long id) {
+        try {
+            return jdbcTemplate.queryForObject("select id, emp_name from employees where id = ?",
+                    this::convertEmployee,
+                    id);
+        }
+        catch (EmptyResultDataAccessException ee) {
+            throw new IllegalArgumentException("Employee not found", ee);
+        }
     }
 
     private Employee convertEmployee(ResultSet resultSet, int i) {
