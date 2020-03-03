@@ -6,7 +6,10 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 @Repository
 public class EmployeesRepository {
@@ -37,5 +40,30 @@ public class EmployeesRepository {
         jdbcTemplate.update("update employees set emp_name = ? where id = ?",
                 employee.getName(), employee.getId());
         return employee;
+    }
+
+    public void deleteEmployee(long id) {
+        jdbcTemplate.update("delete from employees where id = ?", id);
+    }
+
+    public void deleteAll() {
+        jdbcTemplate.update("delete from employees");
+    }
+
+    public List<Employee> listAllEmployees(String prefix) {
+        return jdbcTemplate.query("select id, emp_name from employees where emp_name like ?",
+                this::convertEmployee, prefix == null ? "%" : prefix + "%");
+    }
+
+    private Employee convertEmployee(ResultSet resultSet, int i) {
+        try {
+            var id = resultSet.getLong("id");
+            var name = resultSet.getString("emp_name");
+            var employee = new Employee(id, name);
+            return employee;
+        }
+        catch (SQLException se) {
+            throw new IllegalStateException("Can not convert", se);
+        }
     }
 }
