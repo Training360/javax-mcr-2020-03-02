@@ -28,4 +28,11 @@ Content-Type: application/json
 
 DELETE http://localhost:8080/api/employees/3
 
+### Új alkalmazott létrehozása rossz/üres névvel
+
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{"name": "             "}
+
 ###

@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class EmployeesController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public EmployeeDto createEmployee(@RequestBody CreateEmployeeCommand command) {
+    public EmployeeDto createEmployee(@Valid @RequestBody CreateEmployeeCommand command) {
         return employeesService.createEmployee(command);
     }
     @PostMapping("/{id}")

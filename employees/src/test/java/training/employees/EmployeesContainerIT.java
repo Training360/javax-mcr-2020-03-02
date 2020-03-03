@@ -1,5 +1,6 @@
 package training.employees;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +18,13 @@ public class EmployeesContainerIT {
     @Autowired
     TestRestTemplate template;
 
+    @Autowired
+    EmployeesService employeesService;
+
+    @BeforeEach
+    void clearEmployees() {
+        employeesService.deleteAll();
+    }
 
     @Test
     void testCreateEmployee() {
@@ -31,6 +39,6 @@ public class EmployeesContainerIT {
 
         assertThat(employees)
                 .extracting(EmployeeDto::getName)
-                .containsExactly("John Doe", "Jane Doe", "John Smith");
+                .containsExactly("John Smith");
     }
 }
