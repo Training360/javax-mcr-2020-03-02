@@ -12,18 +12,24 @@ import java.util.stream.Collectors;
 @Slf4j
 public class EmployeesService {
 
-    private DataEmployeesRepository repository;
+    private final DataEmployeesRepository repository;
+
+    private final EventStoreGateway eventStoreGateway;
 
     private ModelMapper modelMapper;
 
-    public EmployeesService(DataEmployeesRepository repository, ModelMapper modelMapper) {
+    public EmployeesService(DataEmployeesRepository repository, EventStoreGateway eventStoreGateway, ModelMapper modelMapper) {
         this.repository = repository;
+        this.eventStoreGateway = eventStoreGateway;
         this.modelMapper = modelMapper;
     }
 
     @Transactional
     public EmployeeDto createEmployee(CreateEmployeeCommand command) {
         var employee = repository.save(new Employee(command.getName()));
+
+        eventStoreGateway.sendEvent(new CreateEventCommand("Employee has been created with name: " + command.getName()));
+
         return modelMapper.map(employee, EmployeeDto.class);
     }
 
