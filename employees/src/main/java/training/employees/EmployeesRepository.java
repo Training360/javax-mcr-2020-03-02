@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-@Repository
+//@Repository
 public class EmployeesRepository {
 
     private JdbcTemplate jdbcTemplate;
