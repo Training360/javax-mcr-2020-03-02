@@ -1,0 +1,38 @@
+## Alkalmazottak listázása
+
+GET http://localhost:8080/api/employees
+
+### Egy alkalmazott lekérdezése
+
+GET http://localhost:8080/api/employees/5e5fa2eb138c3e6cad944323
+
+### Nem létező alkalmazott lekérdezése
+
+GET http://localhost:8080/api/employees/100
+
+### Új alkalmazott létrehozása
+
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{"name": "John Smith"}
+
+### Alkalmazott módosítása
+
+POST http://localhost:8080/api/employees/1
+Content-Type: application/json
+
+{"name": "John Doe2"}
+
+### Törlés
+
+DELETE http://localhost:8080/api/employees/5e5fa10495687b27d81788a4
+
+### Új alkalmazott létrehozása rossz/üres névvel
+
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{"name": "             "}
+
+###
