@@ -19,4 +19,11 @@ public class EmployeesRepositoryIT {
                 .extracting(Employee::getName)
                 .containsExactly("John Doe");
     }
+
+    @Test
+    public void testDelete() {
+        var employee = repository.save(new Employee("John Doe"));
+        repository.deleteById(employee.getId());
+        assertThat(repository.findAll()).isEmpty();
+    }
 }
