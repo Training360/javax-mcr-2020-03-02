@@ -12,10 +12,10 @@ public class EmployeesApplication {
 		SpringApplication.run(EmployeesApplication.class, args);
 	}
 
-	@Bean
-	public HelloService helloService() {
-		return new HelloService();
-	}
+//	@Bean
+//	public HelloService helloService() {
+//		return new HelloService();
+//	}
 
 	@Bean
 	public ModelMapper modelMapper() {

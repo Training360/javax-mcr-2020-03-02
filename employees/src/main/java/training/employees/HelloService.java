@@ -5,11 +5,14 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
-//@Service
+@Service
 public class HelloService {
 
-    @Value("${employees.hello}")
     private String hello;
+
+    public HelloService(@Value("${employees.hello}") String hello) {
+        this.hello = hello;
+    }
 
     public String sayHello() {
         return hello + " " + LocalDateTime.now();

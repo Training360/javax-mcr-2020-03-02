@@ -22,6 +22,9 @@ public class EmployeesControllerIT {
     @MockBean
     EmployeesService employeesService;
 
+    @MockBean
+    HelloService helloService;
+
     @Autowired
     MockMvc mockMvc;
 
