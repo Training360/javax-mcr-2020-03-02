@@ -3,7 +3,7 @@ package training.employees;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.jms.core.JmsTemplate;
+//import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -26,13 +26,13 @@ public class EventStoreGateway {
 //        restTemplate.postForObject(url, event, String.class);
 //    }
 
-    private JmsTemplate jmsTemplate;
-
-    public EventStoreGateway(JmsTemplate jmsTemplate) {
-        this.jmsTemplate = jmsTemplate;
-    }
+//    private JmsTemplate jmsTemplate;
+//
+//    public EventStoreGateway(JmsTemplate jmsTemplate) {
+//        this.jmsTemplate = jmsTemplate;
+//    }
 
     public void sendEvent(CreateEventCommand event) {
-        jmsTemplate.convertAndSend("eventsQueue", event);
+//        jmsTemplate.convertAndSend("eventsQueue", event);
     }
 }

@@ -42,4 +42,12 @@ Content-Type: application/json
 
 {"message":  "Hello Events!"}
 
+### Set logger
+POST http://localhost:8080/actuator/loggers/training.employees
+Content-Type: application/json
+
+{
+  "configuredLevel": "INFO"
+}
+
 ###
