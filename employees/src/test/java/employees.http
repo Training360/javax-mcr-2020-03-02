@@ -36,3 +36,10 @@ Content-Type: application/json
 {"name": "             "}
 
 ###
+
+POST http://localhost:8081/api/events
+Content-Type: application/json
+
+{"message":  "Hello Events!"}
+
+###
