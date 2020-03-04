@@ -1,0 +1,22 @@
+### List employees
+
+GET http://localhost:8081/api/events
+Accept: application/json
+
+### Find event by id
+GET http://localhost:8081/api/events/1
+
+### Create event
+POST http://localhost:8081/api/events
+Content-Type: application/json
+
+{
+  "message": "Employee has created: Jack Doe"
+}
+
+### Stream
+
+GET http://localhost:8081/api/events/stream
+Accept: text/event-stream
+
+###
