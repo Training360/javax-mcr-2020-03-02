@@ -3,10 +3,12 @@ package training.employees;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
+@Sql(statements = "delete from employees")
 public class EmployeesFullstackIT {
 
     @Autowired
